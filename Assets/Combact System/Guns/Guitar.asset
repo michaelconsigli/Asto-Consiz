@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Guitar
   m_EditorClassIdentifier: 
   ImpactType: {fileID: 11400000, guid: c50f6f80c300615438adeba37e2ea508, type: 2}
+  DamageConfig: {fileID: 11400000, guid: 68cff8018f1f34ad6bf352dcaeb6c3ff, type: 2}
   Type: 2
   Name: Guitar
-  ModelPrefab: {fileID: 5347360767647756147, guid: 049eb3c66864545cb9cdcbaba064a98e, type: 3}
+  ModelPrefab: {fileID: 1027854764920523238, guid: 3a4f3fbeb61014457a62785c20610d41, type: 3}
   SpawnPoint: {x: 0.1786398, y: 0.5561935, z: -0.1454165}
   SpawnRotation: {x: 44.719, y: -78.114, z: 268.415}
   ShootConfig: {fileID: 11400000, guid: a5118c67d1f694cd5bf75e624b5b05c8, type: 2}

@@ -6,6 +6,7 @@ using UnityEngine.Pool;
 public class GunScriptableObject : ScriptableObject
 {
     public ImpactType ImpactType;
+    public DamageConfigScriptableObject DamageConfig;
     public GunType Type;
     public string Name;
     public GameObject ModelPrefab;
@@ -122,6 +123,11 @@ public class GunScriptableObject : ScriptableObject
                 ImpactType,
                 0
             );
+
+            if (Hit.collider.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.TakeDamage(DamageConfig.GetDamage(distance));
+            }
         }
 
         yield return new WaitForSeconds(TrailConfig.Duration);
