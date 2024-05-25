@@ -15,9 +15,12 @@ public class GunScriptableObject : ScriptableObject
 
     public ShootConfigScriptableObject ShootConfig;
     public TrailConfigScriptableObject TrailConfig;
+    public AudioConfigScriptableObject audioConfig;
+    private AudioSource ShootingAudioSource;
 
     private MonoBehaviour ActiveMonoBehaviour;
     private GameObject Model;
+    
     private float LastShootTime;
     private ParticleSystem ShootSystem;
     private ObjectPool<TrailRenderer> TrailPool;
@@ -34,6 +37,7 @@ public class GunScriptableObject : ScriptableObject
         Model.transform.localRotation = Quaternion.Euler(SpawnRotation);
 
         ShootSystem = Model.GetComponentInChildren<ParticleSystem>();
+        ShootingAudioSource = Model.GetComponent<AudioSource>();
     }
 
     public void Shoot()
@@ -43,6 +47,7 @@ public class GunScriptableObject : ScriptableObject
         {
             LastShootTime = Time.time;
             ShootSystem.Play();
+            audioConfig.PlayShootingClip(ShootingAudioSource);
             Vector3 shootDirection = ShootSystem.transform.forward
                 + new Vector3(
                     Random.Range(
