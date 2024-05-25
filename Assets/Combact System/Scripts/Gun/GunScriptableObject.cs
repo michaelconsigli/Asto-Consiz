@@ -133,6 +133,7 @@ public class GunScriptableObject : ScriptableObject
             {
                 damageable.TakeDamage(DamageConfig.GetDamage(distance));
             }
+            
         }
 
         yield return new WaitForSeconds(TrailConfig.Duration);
@@ -156,6 +157,17 @@ public class GunScriptableObject : ScriptableObject
         trail.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
         return trail;
+    }
+    public void ApplyDamage(Vector3 startPosition, Vector3 endPoint, int damage)
+    {
+        // Logica per applicare il danno direttamente
+        if (Physics.Raycast(startPosition, (endPoint - startPosition).normalized, out RaycastHit hit, Vector3.Distance(startPosition, endPoint)))
+        {
+            if (hit.collider.TryGetComponent(out IDamageable damageable))
+            {
+                damageable.TakeDamage(damage);
+            }
+        }
     }
 
 }
